@@ -1,8 +1,14 @@
 import express from "express";
 import path from 'path';
+import { Bot, InlineKeyboard, Keyboard,InputFile } from "grammy";
 import { fileURLToPath } from 'url';
 import apiRoutes from './routes/api.js';
-import { Bot } from "grammy";
+
+const bot = new Bot("7114805522:AAG_Z-Q1VZALT-l5oJG6V8tYkdgH1QYlol0")
+
+bot.command("start", (ctx) => ctx.reply(`hello`))
+bot.start()
+console.log('goodbye');
 const app = express();
 const port = 3000;
 import { bot } from "./js/bot.js";
@@ -17,5 +23,5 @@ app.get('/', (req, res) => {
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
-  bot.start()
+
 });
