@@ -2,7 +2,7 @@ import { Bot, InlineKeyboard, Keyboard,InputFile } from "grammy";
 import {createWriteStream, readSync, writeFile } from 'fs'
 import { Readable } from 'stream'
 import { create } from "domain";
-export { Bot } 
+
 
 const bot = new Bot("7114805522:AAG_Z-Q1VZALT-l5oJG6V8tYkdgH1QYlol0")
 
@@ -310,4 +310,4 @@ bot.api.setMyCommands([
   // { command: "falaq", description:  "113 surah 1 - 5 ayah" },
   // { command: "nas", description:    "114 surah 1 - 6 ayah" }
 ]);
-bot.start();
+export { bot } 
