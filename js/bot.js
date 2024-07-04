@@ -2,8 +2,9 @@ import { Bot, InlineKeyboard, Keyboard,InputFile } from "grammy";
 import {createWriteStream, readSync, writeFile } from 'fs'
 import { Readable } from 'stream'
 import { create } from "domain";
+export { Bot } 
 
-const bot = new Bot("7143093218:AAEGes9Oa8fSfgllJPAuCxGC244bbDHFbQM")
+const bot = new Bot("7114805522:AAG_Z-Q1VZALT-l5oJG6V8tYkdgH1QYlol0")
 
 bot.command("start", (ctx) => ctx.reply(`Welcome to Quranic bot!
 Enter "/" then enter name of surah and number of ayah. 

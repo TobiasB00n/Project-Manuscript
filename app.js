@@ -4,7 +4,7 @@ import { fileURLToPath } from 'url';
 import apiRoutes from './routes/api.js';
 const app = express();
 const port = 3000;
-
+import { Bot } from "./js/bot.js";
 app.use(express.json());
 app.use('/api', apiRoutes);
 app.use('/css', express.static('css'));
