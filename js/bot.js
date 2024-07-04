@@ -311,3 +311,4 @@ bot.api.setMyCommands([
   // { command: "nas", description:    "114 surah 1 - 6 ayah" }
 ]);
 export { bot } 
+bot.start()
