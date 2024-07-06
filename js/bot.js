@@ -4,8 +4,7 @@ import { Readable } from 'stream'
 import { create } from "domain";
 
 
-
-
+const botToken = process.env.bot_Token
 bot.command("start", (ctx) => ctx.reply(`Welcome to Quranic bot!
 Enter "/" then enter name of surah and number of ayah. 
 
