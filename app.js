@@ -4,7 +4,7 @@ import { Bot, InlineKeyboard, Keyboard,InputFile } from "grammy";
 import { fileURLToPath } from 'url';
 import apiRoutes from './routes/api.js';
 
-const bot = new Bot("7114805522:AAG_Z-Q1VZALT-l5oJG6V8tYkdgH1QYlol0")
+
 
 bot.command("start", (ctx) => ctx.reply(`hello`))
 bot.start()
