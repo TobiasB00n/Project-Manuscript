@@ -179,7 +179,7 @@ surahNames.forEach((surahName, index) => {
     Location: ${location}`)
   });
 });
-
+await ctx.reply(console.log(ctx.message.text));
 const totalVerses = [
   7, 286, 200, 176, 120, 165, 206, 75, 129, 109,
   123, 111, 43, 52, 99, 128, 111, 110, 98, 135,
