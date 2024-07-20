@@ -11,11 +11,10 @@ const port = 3000;
 
 app.use(express.json());
 
-bot.command("start", (ctx) => ctx.reply(`hello`))
-bot.start()
-console.log('goodbye');
+bot.command("start", (ctx) => ctx.reply(`hello`));
 
-
+// bot.on('message', (ctx) => {console.log(ctx.message.text)});
+console.log('Bot started');
 
 app.use('/api', apiRoutes);
 app.use('/css', express.static('css'));
@@ -25,8 +24,17 @@ app.get('/', (req, res) => {
   res.sendFile('index.html', {root: '.'})
 });
 
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
 
-});
+app.post('/webapp-data', (req, res) => {
+  const data = req.body;
+  console.log(data);
+  const receivedHash = data.hash;
+  console.log(receivedHash);
+})
 
+// app.listen(port, () => {
+//   console.log(`Example app listening on port ${port}`)
+
+// });
+
+bot.start()
