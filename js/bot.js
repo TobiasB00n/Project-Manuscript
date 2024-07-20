@@ -2,7 +2,7 @@ import { Bot, InlineKeyboard, Keyboard,InputFile } from "grammy";
 import {createWriteStream, readSync, writeFile } from 'fs'
 import { Readable } from 'stream'
 import { create } from "domain";
-// export { bot };
+export { bot };
 
 const botToken = process.env.BOT_TOKEN
 const bot = new Bot(botToken)
