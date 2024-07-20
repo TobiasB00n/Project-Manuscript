@@ -5,13 +5,12 @@ import { fileURLToPath } from 'url';
 // import apiRoutes from './routes/api.js';
 import crypto from "crypto";
 import { bot } from "./js/bot.js";
-
+import { vercel } from "vercel";
 const app = express();
 const port = 3000;
 
 app.use(express.json());
 
-bot.command("start", (ctx) => ctx.reply(`hello`));
 
 // bot.on('message', (ctx) => {console.log(ctx.message.text)});
 console.log('Bot started');
