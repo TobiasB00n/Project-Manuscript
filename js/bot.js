@@ -6,7 +6,7 @@ export { bot };
 
 const botToken = process.env.BOT_TOKEN
 const bot = new Bot(botToken)
-// const bot = new Bot('7114805522:AAG6hVVUj9l6zDDlz0GCMU3-AIemFzrNLdQ')
+// const bot = new Bot('7114805522:AAGpmCWhAR3iBxg8Jbww4EbJd8Wtx6bo4oA')
 bot.command("start", (ctx) => ctx.reply(`Welcome to Quranic bot!
 Enter "/" then enter name of surah and number of ayah. 
 
