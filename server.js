@@ -37,6 +37,7 @@ app.post('/webapp-data', (req, res) => {
 
 // });
 
-bot.start()
+bot.launch();
+// bot.start()
 
 export default app;
