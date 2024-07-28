@@ -200,8 +200,8 @@ const totalVerses = [
   11, 8, 3, 9, 5, 4, 7, 3, 6, 3
 ];
 
-// bot.api.setMyCommands()
-  const commands =[
+ bot.api.setMyCommands([
+  
   { command: "fatiha", description: "1 surah 1 - 7 ayah" },
   { command: "baqara", description: "2 surah 1 - 286 ayah" },
   { command: "imran", description: "3 surah 1 - 200 ayah" },
@@ -316,39 +316,39 @@ const totalVerses = [
   // { command: "ikhlas", description: "112 surah 1 - 4 ayah" },
   // { command: "falaq", description:  "113 surah 1 - 5 ayah" },
   // { command: "nas", description:    "114 surah 1 - 6 ayah" }
-];
+ ]);
 
-const chunkArray = (array, chunkSize) => {
-  const results = [];
-  for (let i = 0; i < array.length; i += chunkSize) {
-    results.push(array.slice(i, i + chunkSize));
-  }
-  return results;
-};
+// const chunkArray = (array, chunkSize) => {
+//   const results = [];
+//   for (let i = 0; i < array.length; i += chunkSize) {
+//     results.push(array.slice(i, i + chunkSize));
+//   }
+//   return results;
+// };
 
-const chunks = chunkArray(commands, 20);
+// const chunks = chunkArray(commands, 20);
 
-const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+// const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
-async function setupBotCommands() {
-  for (const chunk of chunks) {
-    try {
-      await bot.api.setMyCommands(chunk);
-      console.log("Bot commands set successfully:", chunk);
-      await delay(500); // Задержка в 500 мс между запросами
-    } catch (err) {
-      if (err.error_code === 429 && err.parameters && err.parameters.retry_after) {
-        const retryAfter = err.parameters.retry_after;
-        console.error(`Too Many Requests: retry after ${retryAfter} seconds`);
-        await delay(retryAfter * 1000);
-      } else {
-        console.error("Failed to set bot commands:", err);
-      }
-    }
-  }
-}
+// async function setupBotCommands() {
+//   for (const chunk of chunks) {
+//     try {
+//       await bot.api.setMyCommands(chunk);
+//       console.log("Bot commands set successfully:", chunk);
+//       await delay(500); // Задержка в 500 мс между запросами
+//     } catch (err) {
+//       if (err.error_code === 429 && err.parameters && err.parameters.retry_after) {
+//         const retryAfter = err.parameters.retry_after;
+//         console.error(`Too Many Requests: retry after ${retryAfter} seconds`);
+//         await delay(retryAfter * 1000);
+//       } else {
+//         console.error("Failed to set bot commands:", err);
+//       }
+//     }
+//   }
+// }
 
-setupBotCommands();
+// setupBotCommands();
 
 
  bot.start()
