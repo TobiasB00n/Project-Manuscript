@@ -3,7 +3,7 @@ import {createWriteStream, readSync, writeFile } from 'fs'
 import { Readable } from 'stream'
 import { create } from "domain";
 export { bot };
-import {vercel} from "vercel";
+// import {vercel} from "vercel";
 // const botToken = process.env.BOT_TOKEN
 // const bot = new Bot(botToken)
 const bot = new Bot(process.env.BOT_TOKEN);

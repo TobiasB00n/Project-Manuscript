@@ -1,13 +1,49 @@
-import express from "express";
-import path from 'path';
-import { Bot, InlineKeyboard, Keyboard,InputFile } from "grammy";
-import { fileURLToPath } from 'url';
-// import apiRoutes from './routes/api.js';
+ import path from 'path';
+// import { Bot, InlineKeyboard, Keyboard,InputFile } from "grammy";
+// import { fileURLToPath } from 'url';
+// // import apiRoutes from './routes/api.js';
+ import { bot } from "./js/bot.js";
+  // import  vercel from "vercel";
+
 import crypto from "crypto";
-import { bot } from "./js/bot.js";
-import { vercel } from "vercel";
+import express from "express";
+
 const app = express();
 const port = 3000;
+
+// const TELEGRAM_BOT_TOKEN = '110201543:AAHdqTcvCH1vGWJxfSeofSAs0K5PALDsaw';
+
+const verifyTelegramWebAppData = (telegramInitData) => {
+
+  const encoded = decodeURIComponent(telegramInitData);
+  
+  // Подпись HMAC-SHA-256 токена бота с константной строкой WebAppData, используемой в качестве ключа
+  const secret = crypto
+    .createHmac('sha256', 'WebAppData')
+    .update(BOT_TOKEN)
+    .digest();
+
+  // Разделение данных на пары ключ-значение
+  const arr = encoded.split('&');
+  const hashIndex = arr.findIndex(str => str.startsWith('hash='));
+  const hash = arr.splice(hashIndex, 1)[0].split('=')[1];
+
+  // Сортировка данных в алфавитном порядке
+  arr.sort((a, b) => a.localeCompare(b));
+
+  // Создание строки проверки данных
+  const dataCheckString = arr.join('\n');
+
+  // Вычисление HMAC-SHA-256 подписи строки проверки данных с секретным ключом
+  const calculatedHash = crypto
+    .createHmac('sha256', secret)
+    .update(dataCheckString)
+    .digest('hex');
+
+  // Проверка совпадения хешей
+  return calculatedHash === hash;
+};
+
 
 app.use(express.json());
 
@@ -24,19 +60,23 @@ app.get('/', (req, res) => {
 });
 
 
-app.post('/webapp-data', (req, res) => {
-  const data = req.body;
-  console.log(data);
+app.post('/webapp/initData', (req, res) => {
+  const data = req.body.telegramInitData;
+  // console.log(data);
   const receivedHash = data.hash;
-  console.log(receivedHash);
-})
+  // console.log(receivedHash);
+  if (verifyTelegramWebAppData(telegramInitData)) {
+    res.send("Данные валидны и получены от Telegram");
+  } else {
+    res.status(400).send("Данные невалидны");
+  }
+});
 
-// app.listen(port, () => {
-//   console.log(`Example app listening on port ${port}`)
+app.listen(port, () => {
+  console.log(`Example app listening on port ${port}`)});
 
-// });
+  
 
-bot.launch();
+// bot.launch();
 // bot.start()
 
-export default app;
